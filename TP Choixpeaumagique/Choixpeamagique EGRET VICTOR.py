@@ -127,9 +127,21 @@ def getAffectation(eleveList):
         Maison d'affectation
     """
 
+    #a est la liste contenant les maisons des 10 eleves les plus proches
+    a = []
     sortedList = sortList(eleveList, 'Distance')
 
-    affectation = 'test'
+    maisons = ['Serpentar', 'Serdaigle', 'Poufsouffle', 'Griffondor']
+
+    for i in range(0, 11):
+        a.append(sortedList[i]['Maison'])
+
+    maxi =0
+    for ma in maisons:
+        num = a.count(ma)
+        if num>maxi:
+            maxi = num
+            affectation = ma
     return affectation
 
 fenetre = tk.Tk()
@@ -167,7 +179,5 @@ affectationlabel.place(x=575,y=150)
 
 affectButton = tk.Button(fenetre,text="Affecter",font=Font18,command= lambda : affectationTexte.set("Affectation :\n" + getAffectation(addDistance(loadFile("choixpeauMagique.csv"), {'Courage': courageEntry.get(), 'Loyauté': loyauteEntry.get(), 'Sagesse': sagesseEntry.get(), 'Malice': maliceEntry.get()}))))
 affectButton.place(width=95, height=30,x=425,y=215)
-
-print(loadFile("choixpeauMagique.csv")[3])
 
 fenetre.mainloop()
