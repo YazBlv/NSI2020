@@ -2,12 +2,11 @@
 """
 Created on Sun Oct 18 13:24:51 2020
 
-@author: Greentor
+@author: vegret
 """
 
 import csv
 import math 
-import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import font as tkFont
 
@@ -144,14 +143,17 @@ def getAffectation(eleveList):
             affectation = ma
     return affectation
 
+#Mise en place de la fenetre graphique
 fenetre = tk.Tk()
 fenetre.title("Choixpeaumagique")
 fenetre.geometry("800x500")
 
+#Police qui sera utilisée
 Font18 = tkFont.Font(family="Arial", size=18)
 
 x = 125
 
+#Mise en place des différentes entrées et des textes correspondants
 courage = tk.Label(fenetre,text="Courage",font=Font18)
 courage.place(x=x,y=125)
 courageEntry = tk.Entry(fenetre, bd =5)
@@ -172,11 +174,13 @@ malice.place(x=x,y=305)
 maliceEntry = tk.Entry(fenetre, bd =5)
 maliceEntry.place(x=x+140,y=305)
 
+#Texte affichant l'affectation
 affectationTexte = tk.StringVar()
 affectationTexte.set("Affectation : ")
 affectationlabel = tk.Label(fenetre,textvar=affectationTexte, font=Font18)
 affectationlabel.place(x=575,y=150)
 
+#Bouton qui active les fonction avec les bons parametres puis qui change le texte en ajoutant l'affectation
 affectButton = tk.Button(fenetre,text="Affecter",font=Font18,command= lambda : affectationTexte.set("Affectation :\n" + getAffectation(addDistance(loadFile("choixpeauMagique.csv"), {'Courage': courageEntry.get(), 'Loyauté': loyauteEntry.get(), 'Sagesse': sagesseEntry.get(), 'Malice': maliceEntry.get()}))))
 affectButton.place(width=95, height=30,x=425,y=215)
 
